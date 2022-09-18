@@ -20,6 +20,9 @@ public class DrawingPanel extends JPanel {
     private static final Color PRIEST_MANTLE_COLOR = new Color(245,255,156);
     private static final Color ARCHIPRIEST_SHADOW_COLOR = new Color(205,205,205);
     private static final Color PRIEST_SHADOW_COLOR = new Color(25,25,25);
+    private static final Color MAIN_SIGN_COLOR = new Color(224,215,0);
+    private static final Color AUX_SIGN_COLOR = new Color(184,134,11);
+    private static final Color TEXT_SIGN_COLOR = new Color(204,172,0);
 
     private int oldHeight,oldWight;
 
@@ -37,7 +40,7 @@ public class DrawingPanel extends JPanel {
     private Timer t2;
     private Building church;
 
-    int wight;
+
 
     private final Random rnd = new Random();
 
@@ -249,7 +252,8 @@ public class DrawingPanel extends JPanel {
             priest1.draw(g2d);
         }
 
-        DrawingUtils.drawSign(g2d,500,500,100,400,Color.green,Color.red,Color.black);
-
+       // columns[i]=new Column(i * (getWidth() / columns.length),getHeight()/2,getHeight()/2,getWidth()/8,Color.GRAY,Color.ORANGE);
+        DrawingUtils.drawSign(g2d,getWidth()/4+getWidth()/8,getHeight()/6,getHeight()/16,getWidth()/4-getWidth()/8,MAIN_SIGN_COLOR,AUX_SIGN_COLOR,TEXT_SIGN_COLOR);
+       // g2d.drawLine();
     }
 }
