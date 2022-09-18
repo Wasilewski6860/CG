@@ -16,6 +16,14 @@ public class Parishioner extends Human{
     void draw(Graphics2D g){
         DrawingUtils.drawParishioner(g,getX(),getY(),getHeight(),getWight(),getSkinColor(),getClothesColor(),hairColor,legsColor,auxColor,getFlag());
     }
+
+    void resize(int oldWidth,int oldHeight, int newWidth, int newHeight){
+        setX(  ( (int)(((double)newWidth/oldWidth) * getWight()) )   ) ;
+        setY(  ( (int)(((double)getHeight()/oldHeight) * getHeight()) )   );
+        setWight(  ( (int)(((double)newWidth/oldWidth) * getWight()) )   );
+        setHeight(  ( (int)(((double)newHeight/oldHeight) * getHeight()) )   );
+    }
+
     public Color getHairColor() {
         return hairColor;
     }

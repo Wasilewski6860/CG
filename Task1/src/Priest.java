@@ -40,6 +40,12 @@ public class Priest extends Human {
         this.mantleColor = mantleColor;
     }
 
+    void resize(int newWidth, int newHeight){
+        setX(5*newWidth/6);
+        setY(12*newHeight/15);
+        setHeight(newHeight/3);
+        setWight(newWidth/10);
+    }
     public Color getShadowColor() {
         return shadowColor;
     }

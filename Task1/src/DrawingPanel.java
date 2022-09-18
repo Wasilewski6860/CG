@@ -12,6 +12,15 @@ import java.awt.event.MouseEvent;
 
 public class DrawingPanel extends JPanel {
 
+    private static final Color GROUND_COLOR1 = new Color(118, 169, 86);
+    private static final Color PRIEST_SKIN_COLOR = new Color(255,197,157);
+    private static final Color ARCHIPRIEST_CLOTHES_COLOR = new Color(232,232,232);
+    private static final Color PRIEST_CLOTHES_COLOR = new Color(232,232,232);
+    private static final Color ARCHIPRIEST_MANTLE_COLOR = new Color(245,255,156);
+    private static final Color PRIEST_MANTLE_COLOR = new Color(245,255,156);
+    private static final Color ARCHIPRIEST_SHADOW_COLOR = new Color(205,205,205);
+    private static final Color PRIEST_SHADOW_COLOR = new Color(25,25,25);
+
     private int oldHeight,oldWight;
 
     private Sun s;
@@ -37,20 +46,18 @@ public class DrawingPanel extends JPanel {
         oldHeight=getHeight();
         oldWight=getWidth();
         setSize(1920,1080);
-        System.out.println("   "+getWidth()+" "+getHeight())  ;
-        s = new Sun(250 + rnd.nextInt(100), 70, 30, 10, 123, Color.YELLOW);
-        priest = new Priest(6*getWidth()/7,11*getHeight()/15,getHeight()/3,getWidth()/10,new Color(255,197,157),new Color(232,232,232),
-                new Color(245,255,156),new Color(205,205,205),false);
+        priest = new Priest(6*getWidth()/7,11*getHeight()/15,getHeight()/3,getWidth()/10,PRIEST_SKIN_COLOR, ARCHIPRIEST_CLOTHES_COLOR,
+                ARCHIPRIEST_MANTLE_COLOR, ARCHIPRIEST_SHADOW_COLOR,false);
         horned = new Horned(0,6*getHeight()/7,getHeight()/2,getWidth()/8,
-                new Color(255,198,155),Color.black,Color.white,Color.gray,false);
-        human = new Parishioner(400,500,200,50,Color.white,Color.red,true,Color.yellow,Color.blue,Color.ORANGE);
+                PRIEST_SKIN_COLOR,Color.black,Color.white,Color.gray,false);
+
         church = new Building(300,300,300,100,Color.YELLOW,Color.white);
 
 
         priests = new Priest[3];
         for (int i = 0; i< priests.length; i++){
-              priests[i]=new Priest(9*getWidth()/16+i*getWidth()/12,13*getHeight()/15+i*getHeight()/15,getHeight()/3,getWidth()/10,new Color(255,197,157),
-                     new Color(38,38,38),new Color(245,255,156),new Color(25,25,25),true);
+              priests[i]=new Priest(9*getWidth()/16+i*getWidth()/12,13*getHeight()/15+i*getHeight()/15,getHeight()/3,getWidth()/10,PRIEST_SKIN_COLOR,
+                     PRIEST_CLOTHES_COLOR,PRIEST_MANTLE_COLOR,PRIEST_SHADOW_COLOR,true);
         }
 
         columns = new Column[4];
@@ -63,7 +70,7 @@ public class DrawingPanel extends JPanel {
 
             parishioners[i]=new Parishioner(i * (getWidth() / parishioners.length) + getWidth()/100* rnd.nextInt(10),
                     getHeight()/2+ getWidth()/100* rnd.nextInt(10),getHeight()/6,getWidth()/14,
-                    new Color(255,198,155),new Color(rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255)),
+                    PRIEST_SKIN_COLOR,new Color(rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255)),
                     true,new Color(170+rnd.nextInt(20),80+rnd.nextInt(30),0),new Color(rnd.nextInt(255),
                     rnd.nextInt(255),rnd.nextInt(255)),new Color(rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255)));
         }
@@ -71,10 +78,9 @@ public class DrawingPanel extends JPanel {
         t = new Timer(100, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (s.getX()>=getWidth())
-                    s.setX(0);
 
-                s.setX(s.getX()+2);
+
+             //   s.setX(s.getX()+2);
                // priest.setX(priest.getX()+1);
                 if (horned.getX()<=7*getWidth()/16) horned.setX(horned.getX()+1);
 
@@ -86,7 +92,7 @@ public class DrawingPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //priest.setFlag(!priest.getFlag());
                 horned.setFlag(!horned.getFlag());
-                human.setFlag(!human.getFlag());
+ //               human.setFlag(!human.getFlag());
 
                for (Parishioner parishioner : parishioners){
                    int random = rnd.nextInt(2);
@@ -135,18 +141,26 @@ public class DrawingPanel extends JPanel {
         if (getHeight()!=oldHeight || getWidth()!= oldWight){
 
           //  priest = new Priest(5*getWidth()/6,12*getHeight()/15,getHeight()/3,getWidth()/10,new Color(255,197,157),new Color(2
-            priest.setX(5*getWidth()/6);
-            priest.setY(12*getHeight()/15);
-            priest.setHeight(getHeight()/3);
-            priest.setWight(getWidth()/10);
+
+//            priest.setX(5*getWidth()/6);
+//            priest.setY(12*getHeight()/15);
+//            priest.setHeight(getHeight()/3);
+//            priest.setWight(getWidth()/10);
+
+            priest.resize(getWidth(),getHeight());
+
+//            priest.resize(oldWight,oldHeight,getWidth(),getHeight());
 
             for (int i = 0; i< priests.length; i++){
               //  priests[i]=new Priest(9*getWidth()/16+i*getWidth()/12,13*getHeight()/15+i*getHeight()/15,getHeight()/3,getWidth()/10,new Color(255,197,157),
                //         new Color(38,38,38),new Color(245,255,156),new Color(25,25,25),true);
+
                 priests[i].setX(9*getWidth()/16+i*getWidth()/12);
                 priests[i].setY(13*getHeight()/15+i*getHeight()/15);
                 priests[i].setHeight(getHeight()/3);
                 priests[i].setWight(getWidth()/10);
+
+              //  priests[i].resize(getWidth(),getHeight());
 
             }
 
@@ -157,10 +171,13 @@ public class DrawingPanel extends JPanel {
 //                        new Color(255,198,155),new Color(rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255)),
 //                        true,new Color(170+rnd.nextInt(20),80+rnd.nextInt(30),0),new Color(rnd.nextInt(255),
 //                        rnd.nextInt(255),rnd.nextInt(255)),new Color(rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255)));
+
                 parishioners[i].setX(i * (getWidth() / parishioners.length) + getWidth()/100* rnd.nextInt(10));
                 parishioners[i].setY(getHeight()/2+ getWidth()/100* rnd.nextInt(10));
                 parishioners[i].setHeight(getHeight()/6);
                 parishioners[i].setWight(getWidth()/12);
+
+           //     parishioners[i].resize(oldWight,oldHeight,getWidth(),getHeight());
             }
 
             for (int i = 0; i< columns.length; i++){
@@ -172,11 +189,12 @@ public class DrawingPanel extends JPanel {
                 columns[i].setWight(getWidth()/8);
             }
 
-            horned.setX((int)( ((double)(getWidth()/oldWight))* horned.getX()) );
-            horned.setY((int)(((double)(getHeight()/oldHeight))* horned.getY()));
-            horned.setWight((int)(((double)(getWidth()/oldWight))* horned.getWight()));
-            horned.setHeight((int)(((double)(getHeight()/oldHeight))* horned.getHeight()));
+            horned.setX(  ( (int)(((double)getWidth()/oldWight) * horned.getWight()) )   ) ;
+            horned.setY(  ( (int)(((double)getHeight()/oldHeight) * horned.getHeight()) )   );
+            horned.setWight(  ( (int)(((double)getWidth()/oldWight) * horned.getWight()) )   );
+            horned.setHeight(  ( (int)(((double)getHeight()/oldHeight) * horned.getHeight()) )   );
 
+            System.out.printf("NewHeight"+horned.getHeight());
             oldHeight=getHeight();
             oldWight=getWidth();
 
@@ -231,6 +249,7 @@ public class DrawingPanel extends JPanel {
             priest1.draw(g2d);
         }
 
+        DrawingUtils.drawSign(g2d,500,500,100,400,Color.green,Color.red,Color.black);
 
     }
 }

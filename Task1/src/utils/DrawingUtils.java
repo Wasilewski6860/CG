@@ -392,6 +392,88 @@ public class DrawingUtils {
 
     }
 
+    public static void drawSign(Graphics2D g, int  x,int y,int height, int wight
+            , Color mainColor, Color auxColor, Color textColor
+    ){
+
+        //hallelujah
+
+        int maxWight =15;
+        int maxHeight = 7;
+
+        int stringHeight = 10;
+        int stringWight = 10;
+
+        int heightBasic =height/maxHeight;
+        int wightBasic = wight/maxWight;
+
+        g.setColor(auxColor);
+       // g.drawLine();
+
+        g.fillArc(x,y-2*heightBasic,2*wightBasic,2*heightBasic,180,90);
+        g.fillArc(x,y-maxHeight*heightBasic,2*wightBasic,2*heightBasic,90,90);
+        g.fillArc(x+13*wightBasic,y-maxHeight*heightBasic,2*wightBasic,2*heightBasic,0,90);
+        g.fillArc(x+13*wightBasic,y-2*heightBasic,2*wightBasic,2*heightBasic,270,90);
+
+        g.fillRect(x+14*wightBasic,y-6*heightBasic,wightBasic,5*heightBasic);
+        g.fillRect(x,y-6*heightBasic,wightBasic,5*heightBasic);
+        g.fillRect(x+wightBasic,y-1*heightBasic,13*wightBasic,1*heightBasic);
+        g.fillRect(x+wightBasic,y-7*heightBasic,13*wightBasic,1*heightBasic);
+
+
+        g.setColor(mainColor);
+        g.fillRect(x+wightBasic,y-6*heightBasic,13*wightBasic,5*heightBasic);
+
+        g.setColor(auxColor);
+        g.fillOval(x+wightBasic,y-6*heightBasic,2*wightBasic,5*heightBasic);
+        g.fillOval(x+12*wightBasic,y-6*heightBasic,2*wightBasic,5*heightBasic);
+
+        g.setColor(textColor);
+        g.drawOval(x+wightBasic,y-6*heightBasic,2*wightBasic,5*heightBasic);
+        g.drawOval(x+12*wightBasic,y-6*heightBasic,2*wightBasic,5*heightBasic);
+
+        drawAlleluia(g,x+4*wightBasic,y-heightBasic,5*heightBasic,8*wightBasic,textColor);
+
+    }
+
+
+    static void drawAlleluia(Graphics2D g, int x, int y, int height, int wight, Color color){
+
+        int maxWight =27;
+        int maxHeight = 10;
+
+        int heightBasic =height/maxHeight;
+        int wightBasic = wight/maxWight;
+
+        g.setColor(color);
+        g.fillRect(x,y-9*heightBasic,wightBasic,9*heightBasic);
+        g.fillRect(x+wightBasic,y-maxHeight*heightBasic,3*wightBasic,heightBasic);
+        g.fillRect(x,y-6*heightBasic,5*wightBasic,heightBasic);
+        g.fillRect(x+6*wightBasic,y-2*heightBasic,2*wightBasic,2*heightBasic);
+        g.fillRect(x+9*wightBasic,y-2*heightBasic,2*wightBasic,2*heightBasic);
+        g.fillRect(x+12*wightBasic,y-2*heightBasic,2*wightBasic,2*heightBasic);
+        g.fillRect(x+12*wightBasic,y-maxHeight*heightBasic,2*wightBasic,2*heightBasic);
+        g.fillRect(x+12*wightBasic,y-6*heightBasic,2*wightBasic,2*heightBasic);
+        g.fillRect(x+15*wightBasic,y-2*heightBasic,2*wightBasic,2*heightBasic);
+        g.fillRect(x+19*wightBasic,y-2*heightBasic,2*wightBasic,2*heightBasic);
+        g.fillRect(x+22*wightBasic,y-maxHeight*heightBasic,1*wightBasic,1*heightBasic);
+        g.fillRect(x+25*wightBasic,y-maxHeight*heightBasic,1*wightBasic,2*heightBasic);
+        g.fillRect(x+25*wightBasic,y-5*heightBasic,1*wightBasic,1*heightBasic);
+
+        g.fillRect(x+4*wightBasic,y-9*heightBasic,wightBasic,9*heightBasic);
+        g.fillRect(x+6*wightBasic,y-10*heightBasic,wightBasic,10*heightBasic);
+        g.fillRect(x+9*wightBasic,y-10*heightBasic,wightBasic,10*heightBasic);
+        g.fillRect(x+12*wightBasic,y-10*heightBasic,wightBasic,10*heightBasic);
+        g.fillRect(x+15*wightBasic,y-10*heightBasic,wightBasic,10*heightBasic);
+        g.fillRect(x+18*wightBasic,y-10*heightBasic,wightBasic,9*heightBasic);
+        g.fillRect(x+20*wightBasic,y-10*heightBasic,wightBasic,9*heightBasic);
+        g.fillRect(x+22*wightBasic,y-8*heightBasic,wightBasic,8*heightBasic);
+        g.fillRect(x+24*wightBasic,y-9*heightBasic,wightBasic,9*heightBasic);
+        g.fillRect(x+26*wightBasic,y-9*heightBasic,wightBasic,9*heightBasic);
+
+
+    }
+
     public static void drawWindow(Graphics2D g, int  x,int y,int height, int wight, Color color){
 
         int maxWight =11;
